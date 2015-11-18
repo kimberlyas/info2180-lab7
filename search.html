@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <script src="//ajax.googleapis.com/ajax/libs/prototype/1.7.1.0/prototype.js"></script>
+         <script>
+             window.onload = function() 
+             {
+                document.getElementById("search").onclick = 
+                function() // fetch data
+                {
+                     // Exercise #3 - Lookup any word entered into the textbox
+                    var searchText = document.getElementById("term").value;
+                    // Exercise #4
+                    new Ajax.Updater({success:'result'},'request.php?q='+searchText+'&all=true',{method: 'get'});
+                    
+                   /* new Ajax.Request("request.php?q=definition",
+                       {
+                          method: "get",
+                          onSuccess: displayResult
+                       } ); #Exercise 2*/ 
+                 };
+                
+                /*function displayResult(data)
+                {
+                    // alert(data.responseText); #Exercise2 
+                   
+                }*/
+              };                        
+
+       </script>
+        <title>Search Dictionary</title>
+    </head>
+    <body>
+            <div id="controls">
+                Term: <input type="text" id="term" />
+                <button id="search">Lookup</button>
+            </div>
+            <div id="result">  <!-- placing definition here -->  </div>
+
+    </body>
+</html>
+       
