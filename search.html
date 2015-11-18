@@ -11,7 +11,7 @@
                      // Exercise #3 - Lookup any word entered into the textbox
                     var searchText = document.getElementById("term").value;
                     // Exercise #4
-                    new Ajax.Updater({success:'result'},'request.php?q='+searchText+'&all=true',{method: 'get'});
+                    new Ajax.Updater('result','request.php?q='+searchText+'&all=true',{method: 'get', onSuccess: displayResult});
                     
                    /* new Ajax.Request("request.php?q=definition",
                        {
@@ -20,11 +20,50 @@
                        } ); #Exercise 2*/ 
                  };
                 
-                /*function displayResult(data)
+                function displayResult(data)
                 {
                     // alert(data.responseText); #Exercise2 
-                   
-                }*/
+                    
+                    // Exercise #4
+                    
+                    // Create an ordered list
+                    var ordList = document.createElement('ol');
+                    
+                    // Get elements
+                    var xml = data.responseXML;
+                    var defArray = xml.getElementsByTagName('definition');
+                    var exampleArray = xml.getElementsByTagName('example');
+                    var authorArray = xml.getElementsByTagName('author');
+                    
+                    // For each definition add an item to the list
+                    for ( var i = 0; i < defArray.length; i++)
+                    {
+                       var listItem = document.createElement('li'); 
+                        console.log(listItem);
+                       // Insert three new paragraphs into each definition's li
+                       var para1 = document.createElement('p');
+                        // the definition text
+                       para1.appendChild(defArray[i].getAttribute('name') + defArray[i].firstChild.nodeValue );
+                       console.log(defArray[i].getAttribute('name') + defArray[i].firstChild.nodeValue);
+                       listItem.appendChild(para1);
+                       
+                       var para2 = document.createElement('p') + document.createElement('br');
+                       // the word's example usage (give it a className of "example")
+                       exampleArray[i].className = 'example';
+                       para2.appendChild(exampleArray[i].innerHTML);
+                       console.log(exampleArray[i].innerHTML);
+                       listItem.appendChild(para2);
+                       
+                       var para3 = document.createElement('p');
+                       // the author who submitted the definition (preceded by a dash)
+                       para3.appendChild(authorArray[i].innerHTML);
+                       listItem.appendChild(para3);
+                       
+                       ordList.appendChild(listItem);
+                    }
+                    console.log(exampleArray);
+                    
+                }
               };                        
 
        </script>
