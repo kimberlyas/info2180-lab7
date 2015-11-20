@@ -1,0 +1,38 @@
+/*
+	Lab 7 (Ajax/XML)
+*/
+
+body, h1 {
+	margin: 0;
+}
+
+body > div {
+	padding: 8px;
+}
+
+h1, h2 {
+	background-color: #ddd;
+	font-family: sans-serif;
+	padding: 5px;
+}
+
+#controls {
+	background-color: #eee;
+}
+
+.example {
+	background-color: rgb(238, 238, 221);
+	border: 1px dashed rgb(90, 83, 42);
+	color: rgb(90, 83, 42);
+	font-style: italic;
+	margin: 1em;
+}
+
+.author {
+	color: #6698CB;
+	text-decoration: underline;
+}
+
+.author:hover {
+	cursor: pointer;
+}
